@@ -12,6 +12,11 @@ export const createPostAPI = async (postData) => {
 };
 //!Fetch All posts
 export const fetchAllPosts = async () => {
-  const posts = await axios.get(`${BASE_URL}`);
+  const posts = await axios.get(BASE_URL);
+  return posts.data;
+};
+//!Fetch  post
+export const fetchAllPost = async () => {
+  const posts = await axios.get(`${BASE_URL}/${postId}`);
   return posts.data;
 };
