@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
+import { updatePostAPI } from "../../APIServices/posts/postsAPI";
 const UpdatePost = () => {
   //!Get the post id
   const { postId } = useParams();
@@ -14,7 +15,7 @@ const UpdatePost = () => {
   //Post Mutation
   const postMutation = useMutation({
     mutationKey: ["update-post"],
-    mutationFn: () => {},
+    mutationFn: () => updatePostAPI,
   });
   const formik = useFormik({
     // initial values
@@ -33,6 +34,7 @@ const UpdatePost = () => {
       const postData = {
         title: values.title,
         description: values.description,
+        postId: postId,
       };
       console.log(values);
       postMutation.mutate(postData);
@@ -54,9 +56,9 @@ const UpdatePost = () => {
       <h1>You are Editing-{data?.postFound.title}</h1>
 
       <div>
-        {/* {isLoading && <p>Loading...</p>}
-        {isSuccess && <p>Post Created Successfully</p>}
-        {isError && <p>error.message</p>} */}
+        {isLoading && <p>Loading...</p>}
+        {isSuccess && <p>Post Updated Successfully</p>}
+        {isError && <p>error.message</p>}
         <form onSubmit={formik.handleSubmit}>
           <input
             type="text"
