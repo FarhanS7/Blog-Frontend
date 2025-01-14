@@ -13,7 +13,7 @@ export const createPostAPI = async (postData) => {
 //!Update Post API
 export const updatePostAPI = async (postData) => {
   console.log(postData);
-  const response = await axios.put(`${BASE_URL}/ ${postData?.postId}`, {
+  const response = await axios.put(`${BASE_URL}/${postData?.postId}`, {
     title: postData.title,
     description: postData.description,
   });
@@ -25,7 +25,12 @@ export const fetchAllPosts = async () => {
   return posts.data;
 };
 //!Fetch  post
-export const fetchAllPost = async () => {
+export const fetchPost = async (postId) => {
   const posts = await axios.get(`${BASE_URL}/${postId}`);
+  return posts.data;
+};
+//! Delete Post
+export const deletePostAPI = async (postId) => {
+  const posts = await axios.delete(`${BASE_URL}/${postId}`);
   return posts.data;
 };

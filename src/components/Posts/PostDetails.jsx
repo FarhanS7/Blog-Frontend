@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { fetchPost } from "../../APIServices/posts/postsAPI";
 
 const PostDetails = () => {
   //!Get the post id
   const { postId } = useParams();
   //! use Query
   const { isError, isLoading, data, error, isSuccess } = useQuery({
-    queryKey: ["postsDetails"],
-    queryFn: () => fetchAPost(postId),
+    queryKey: ["posts-details"],
+    queryFn: () => fetchPost(postId),
   });
   return (
     <div>

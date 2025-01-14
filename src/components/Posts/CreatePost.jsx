@@ -7,7 +7,7 @@ import { createPostAPI } from "../../APIServices/posts/postsAPI";
 const CreatePost = () => {
   //Post Mutation
   const postMutation = useMutation({
-    mutationKey: ["createPost"],
+    mutationKey: ["create-post"],
     mutationFn: createPostAPI,
   });
   const formik = useFormik({
@@ -27,11 +27,10 @@ const CreatePost = () => {
         title: values.title,
         description: values.description,
       };
-      console.log(values);
+
       postMutation.mutate(postData);
     },
   });
-  console.log("mutation", postMutation);
 
   //get loading state
   const isLoading = postMutation.isPending;
@@ -66,6 +65,10 @@ const CreatePost = () => {
           placeholder="Enter description"
           {...formik.getFieldProps("description")}
         ></input>
+        {/* Display Error msg */}
+        {formik.touched.description && formik.errors.description && (
+          <span style={{ color: "red" }}>{formik.errors.description}</span>
+        )}
         <button type="submit">Create</button>
       </form>
     </div>
