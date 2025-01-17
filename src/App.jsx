@@ -1,20 +1,24 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./components/Home/HomePage";
+import Home from "./components/Home/HomePage";
 import PublicNavbar from "./components/Navbar/PublicNavbar";
 import CreatePost from "./components/Posts/CreatePost";
-import UpdatePost from "./components/Posts/UpdatePost";
-import PostsList from "./components/PostsList/PostsList";
+import PostDetails from "./components/Posts/PostDetails";
+import PostsList from "./components/Posts/PostsList";
+
 function App() {
   return (
     <BrowserRouter>
+      {/* Navbar */}
       <PublicNavbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* Create Post */}
-        <Route path="/create-post" element={<CreatePost />} />
-        {/* PostList */}
-        <Route path="/lists" element={<PostsList />} />
-        <Route path="/posts/:postId" element={<UpdatePost />} />
+        {/* create post */}
+        <Route element={<Home />} path="/" />
+        <Route element={<CreatePost />} path="/create-post" />
+        <Route element={<PostsList />} path="/posts" />
+        <Route element={<PostDetails />} path="/posts/:postId" />
+        {/* <Route element={<UpdatePost />} path="/posts/:postId" /> */}
+        {/* <CreatePost />
+        <PostsList /> */}
       </Routes>
     </BrowserRouter>
   );
